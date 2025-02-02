@@ -43,36 +43,6 @@
     background-color: #011946 !important; /* Tom mais escuro no hover */
   }
 
-  .custom-btn-status-pendente {
-    background-color: #ff8700 !important; /* Cor laranja vibrante */
-    color: white !important; /* Texto branco */
-    border: 2px solid #cc6d00 !important;
-    border-radius: 8px; /* Arredondando as bordas */
-    padding: 8px 16px; /* Ajustando o espaçamento interno */
-    font-weight: bold; /* Deixando o texto mais forte */
-    text-transform: capitalize; /* Mantendo "Editar" com a primeira letra maiúscula */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil */
-  }
-
-  .custom-btn-status-pendente:hover {
-    background-color: #cc6d00 !important; /* Tom mais escuro no hover */
-  }
-
-  .custom-btn-status-concluido {
-    background-color: #02B632 !important; /* Cor laranja vibrante */
-    color: white !important; /* Texto branco */
-    border: 2px solid #037421 !important;
-    border-radius: 8px; /* Arredondando as bordas */
-    padding: 8px 16px; /* Ajustando o espaçamento interno */
-    font-weight: bold; /* Deixando o texto mais forte */
-    text-transform: capitalize; /* Mantendo "Editar" com a primeira letra maiúscula */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil */
-  }
-
-  .custom-btn-status-concluido:hover {
-    background-color: #002D0C !important; /* Tom mais escuro no hover */
-  }
-
   .add-button-item {
     background-color: #06b933 !important; /* Cor laranja vibrante */
     color: white !important; /* Texto branco */
@@ -83,8 +53,4 @@
     text-transform: capitalize; /* Mantendo "Editar" com a primeira letra maiúscula */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil */
     text-decoration: none;
-  }
-
-  .add-button-item:hover {
-    background-color: #015a29  !important; /* Tom mais escuro no hover */
   }

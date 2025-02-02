@@ -1,0 +1,15 @@
+.back-button-item {
+    background-color: #D80D0D !important; /* Cor laranja vibrante */
+    color: white !important; /* Texto branco */
+    border: 2px solid #a30303 !important;
+    border-radius: 8px; /* Arredondando as bordas */
+    padding: 8px 16px; /* Ajustando o espaçamento interno */
+    font-weight: bold; /* Deixando o texto mais forte */
+    text-transform: capitalize; /* Mantendo "Editar" com a primeira letra maiúscula */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    text-decoration: none;
+  }
+
+  .back-button-item:hover {
+    background-color: #830202  !important; /* Tom mais escuro no hover */
+  }

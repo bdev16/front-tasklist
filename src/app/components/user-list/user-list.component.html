@@ -52,44 +52,34 @@
 <body class="text-white">
   <div class="background">
     <header class="text-center py-4" id="navegation">
-      <h1 class="fw-bold navegation-item">Lista de tarefas</h1>
+      <h1 class="fw-bold navegation-item">Lista de Usuários</h1>
       <div class="btn-group navegation-item" role="group">
         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#" [routerLink]="'/User'">Lista de Usuários</a></li>
+            <li><a class="dropdown-item" href="#" >Lista de Tarefas</a></li>
         </ul>
       </div>
     </header>
     <div class="add-button">
-      <a class="add-button-item" [routerLink]="'Task/Create'"  (click)="defineRegisterOrUpdateValue(1); modifiedTitleComponent('Criar task')">Nova tarefa</a>
+      <a class="add-button-item" [routerLink]="'Create'" (click)="defineRegisterOrUpdateValue(1); modifiedTitleComponent('Criar usuario'); toggleDisabled(false)">Novo Usuario</a>
     </div>
     <section class="content" >
       <ul class="list-group">
-        @for(task of dataSource; track task) {
+        @for(user of dataSource; track user) {
           <li class="list-group-item task-item">
               <div class="task-title">
-                <p class="fs-2 fw-semibold">{{ task.title }}</p>
+                <p class="fs-2 fw-semibold">{{ user.name }}</p>
               </div>
               <div class="button-actions">
-                <div class="button-status">
-                  @if (task.status == 1) {
-                    <button type="button" class="btn custom-btn-status-pendente" (click)="updateTask(task, 2)">PENDENTE</button>
-                  } 
-                  
-                  @if (task.status == 2) {
-                    <button type="button" class="btn custom-btn-status-concluido" (click)="updateTask(task, 1)">CONCLUIDO</button>
-                  }
-                  
-                </div>
                 <div class="button-modified">
-                  <button type="button" class="btn custom-btn-update" [routerLink]="'Task/Update'" (click)="defineRegisterOrUpdateValue(2); recoverTaskInstance(task); toggleDisabled(false); modifiedTitleComponent('Editar task')">Editar</button>
+                  <button type="button" class="btn custom-btn-update" [routerLink]="'Create'" (click)="defineRegisterOrUpdateValue(2); modifiedTitleComponent('Editar usuario'); toggleDisabled(false); recoverUserInstance(user)">Editar</button>
                 </div>
                 <div class="button-remove">
-                  <button type="button" class="btn custom-btn-excluir" (click)="deleteTask(task.id)">Excluir</button>
+                  <button type="button" class="btn custom-btn-excluir" (click)="deleteUser(user.id)">Excluir</button>
                 </div>
                 <div class="button-visualized">
-                  <button type="button" class="btn custom-btn-visualizar" [routerLink]="'Task/View'" (click)="defineRegisterOrUpdateValue(3); recoverTaskInstance(task); toggleDisabled(true); modifiedTitleComponent('Visualisar task')">Visualizar</button>
+                  <button type="button" class="btn custom-btn-visualizar" [routerLink]="'Create'" (click)="defineRegisterOrUpdateValue(3); toggleDisabled(true); recoverUserInstance(user)">Visualizar</button>
                 </div>
               </div>               
           </li>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .background {
+          min-height: 100vh;
+          background-color: #262626;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .content {
+          background-color: #1D1D1D;
+          border: solid #000000 1px;
+          border-radius: 10px;
+          padding: 30px;
+          max-width: 1500px;
+          width: 80%;
+          min-height: 500px;
+        }
+        .header {
+            text-align: center;
+            padding-top: 2px;
+            padding-bottom: 10px;
+        }
+        .form {
+            
+        }
+
+        .button-create {
+            padding-top: 20px;
+        }
+
+        .button-create button {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="text-white">
+  <div class="background">
+    <header class="text-center py-4">
+      <h1 class="fw-bold">Lista de tarefas</h1>
+    </header>
+    <div class="back-button">
+      <a class="back-button-item" [routerLink]="''">Voltar</a>
+    </div>
+    <section class="content" >
+        <header class="header">
+            <h2>{{ titleComponent }}</h2>
+        </header>
+          <form id="form" class="form form-itens">
+            @if (registerOrUpdate == 2 || registerOrUpdate == 3) {
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Id da tarefa</label>
+                <input type="number" disabled class="form-control" id="exampleFormControlInput3" [(ngModel)]="id" name="id">
+              </div>
+            }
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Titulo</label>
+                <input type="text" [disabled]="isDisabled" class="form-control" id="exampleFormControlInput1" placeholder="Estudar inglês por 02:00 horas" [(ngModel)]="title" name="title">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Descrição</label>
+                <input type="text" [disabled]="isDisabled" class="form-control" id="exampleFormControlInput2" placeholder="O Objetivo dessa tarefa é Estudar inglês por 02:00 horas"  [(ngModel)]="description" name="description">
+            </div>
+            @if (registerOrUpdate == 3) {
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Status</label>
+                <input type="text" [disabled]="isDisabled" class="form-control" id="exampleFormControlInput4" [(ngModel)]="status" name="status">
+            </div>
+            }
+            <div class="row align-items-center">
+                <div class="col-auto">
+                  <label for="input1" class="form-label">Data</label>
+                  <input type="datetime" id="input1" [disabled]="isDisabled" class="form-control"  [(ngModel)]="date" name="date">
+                </div>
+                <div class="col-auto">
+                  <label for="input2" class="form-label">Id Usuario</label>
+                  <input type="number" id="input2"  [disabled]="isDisabled" class="form-control"  [(ngModel)]="idUser" name="idUser">
+                </div>
+              </div>
+            @if (registerOrUpdate == 1) {
+              <div class="col-12 button-create">
+                  <button class="btn btn-primary" (click)="createTask()" [routerLink]="''">Criar tarefa</button>
+              </div>
+            } 
+            @if (registerOrUpdate == 2) {
+              <div class="col-12 button-create">
+                <button class="btn btn-primary"  (click)="updateTask()" [routerLink]="''">Salvar alterações</button>
+              </div>
+            }
+          </form>
+    </section>
+    <footer class="py-3">
+      <p>Desenvolvido por bdev 2025</p>
+    </footer>
+  </div>
+</body>
+</html>
