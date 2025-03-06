@@ -4,11 +4,12 @@ import { TaskListComponent } from './components/task-list/task-list.component';
 import { RegisterTaskComponent } from './components/register-task/register-task.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
     {
         path: "",
-        component: TaskListComponent
+        component: HomeComponent
     },
 
     {
