@@ -10,13 +10,13 @@
 <body>
     <header class="cabecalho">
         <h1 class="cabecalho__titulo">Lista de Tarefas</h1>
-        <div class="cabecalho__links">
+        <div class="cabecalho__links" [ngStyle]="{'display': visibleLinksNavbarMobile ? 'flex' : 'none'}">
             <a class="cabecalho__links__link" href="../home/index.html"><p>Home</p></a>
             <a class="cabecalho__links__link" href="../task/create.html"><p>Criar tarefa</p></a>
             <a class="cabecalho__links__link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"><p>Perfil</p></a>
         </div>
         <div class="cabecalho__menu-icon">
-            <a><img src="/public/bars-solid-_2_.png"></a>
+            <a (click)="viewNavbarMobileOptions()"><img src="/bars-solid-_2_.png"></a>
         </div>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
@@ -62,7 +62,7 @@
                 <a class="tabela__filtros__status__link__concluidas">CONCLUIDAS</a>
             </div>
             <div class="tabela__filtros__input">
-                <img class="tabela__filtros__input__img" src="/public/lupaInput.png">
+                <img class="tabela__filtros__input__img" src="/lupaInput.png" alt="Icone de lupa">
                 <input type="text" class="tabela__filtros__input_input">
             </div>
         </section>
@@ -72,36 +72,36 @@
                     <div class="tabela__lista__tarefas__tarefa__caixa1">
                         <input class="tabela__lista__tarefas__tarefa__caixa1__status" type="checkbox">
                         <p class="tabela__lista__tarefas__tarefa__caixa1__texto">TAREFA 1</p>
-                        <a class="tabela__lista__tarefas__tarefa__caixa1__button__abrir"><img src="/public/adicionarIcon.png"></a>
-                        <a class="tabela__lista__tarefas__tarefa__caixa1__button__fechar"><img src="/public/fechar.png"></a>
+                        <a class="tabela__lista__tarefas__tarefa__caixa1__button__abrir" (click)="viewMobileOptions()" *ngIf="!visibleOptions"><img src="/adicionarIcon.png"></a>
+                        <a class="tabela__lista__tarefas__tarefa__caixa1__button__fechar" (click)="viewMobileOptions()" *ngIf="visibleOptions" [ngStyle]="{'display': visibleOptions ? 'flex' : 'none'}"><img src="/fechar.png"></a>
                     </div>
                     <div class="tabela__lista__tarefas__tarefa__botoes">
-                        <a class="tabela__lista__tarefas__tarefa__botoes__visualizar" href="../task/view.html"><img src="/public/lupaTask.png"></a>
-                        <a class="tabela__lista__tarefas__tarefa__botoes__editar" href="../task/update.html"><img src="/public/editarTask.png"></a>
-                        <div class="tabela__lista__tarefas__tarefa__botoes__excluir"><img src="/public/excluirTask.png"></div>
+                        <a class="tabela__lista__tarefas__tarefa__botoes__visualizar" href="../task/view.html"><img src="/lupaTask.png"></a>
+                        <a class="tabela__lista__tarefas__tarefa__botoes__editar" href="../task/update.html"><img src="/editarTask.png"></a>
+                        <div class="tabela__lista__tarefas__tarefa__botoes__excluir"><img src="/excluirTask.png"></div>
                     </div>
-                    <div class="tabela__lista__tarefas__tarefa__botoes__mobile">
-                        <a class="tabela__lista__tarefas__tarefa__botoes__visualizar"><img src="/public/lupaTask.png"></a>
-                        <a class="tabela__lista__tarefas__tarefa__botoes__editar" href="../task/update.html"><img src="/public/editarTask.png"></a>
-                        <div class="tabela__lista__tarefas__tarefa__botoes__excluir"><img src="/public/excluirTask.png"></div>
+                    <div class="tabela__lista__tarefas__tarefa__botoes__mobile" [ngStyle]="{'display': visibleOptions ? 'flex' : 'none', 'justify-content': 'center', 'gap': '40px', 'width': '100%'}">
+                        <a class="tabela__lista__tarefas__tarefa__botoes__visualizar"><img src="/lupaTask.png"></a>
+                        <a class="tabela__lista__tarefas__tarefa__botoes__editar" href="../task/update.html"><img src="/editarTask.png"></a>
+                        <div class="tabela__lista__tarefas__tarefa__botoes__excluir"><img src="/excluirTask.png"></div>
                     </div>
                 </li>
                 <li class="tabela__lista__tarefas__tarefa">
                     <div class="tabela__lista__tarefas__tarefa__caixa1">
                         <input class="tabela__lista__tarefas__tarefa__caixa1__status" type="checkbox">
                         <p class="tabela__lista__tarefas__tarefa__caixa1__texto">TAREFA 1</p>
-                        <a class="tabela__lista__tarefas__tarefa__caixa1__button__abrir"><img src="/public/adicionarIcon.png"></a>
-                        <a class="tabela__lista__tarefas__tarefa__caixa1__button__fechar"><img src="/public/fechar.png"></a>
+                        <a class="tabela__lista__tarefas__tarefa__caixa1__button__abrir"><img src="/adicionarIcon.png"></a>
+                        <a class="tabela__lista__tarefas__tarefa__caixa1__button__fechar"><img src="/fechar.png"></a>
                     </div>
                     <div class="tabela__lista__tarefas__tarefa__botoes">
-                        <a class="tabela__lista__tarefas__tarefa__botoes__visualizar" href="../task/view.html"><img src="/public/lupaTask.png"></a>
-                        <a class="tabela__lista__tarefas__tarefa__botoes__editar"><img src="/public/editarTask.png"></a>
-                        <div class="tabela__lista__tarefas__tarefa__botoes__excluir"><img src="/public/excluirTask.png"></div>
+                        <a class="tabela__lista__tarefas__tarefa__botoes__visualizar" href="../task/view.html"><img src="/lupaTask.png"></a>
+                        <a class="tabela__lista__tarefas__tarefa__botoes__editar"><img src="/editarTask.png"></a>
+                        <div class="tabela__lista__tarefas__tarefa__botoes__excluir"><img src="/excluirTask.png"></div>
                     </div>
                     <div class="tabela__lista__tarefas__tarefa__botoes__mobile">
-                        <a class="tabela__lista__tarefas__tarefa__botoes__visualizar" href="../task/view.html"><img src="/public/lupaTask.png"></a>
-                        <a class="tabela__lista__tarefas__tarefa__botoes__editar"><img src="/public/editarTask.png"></a>
-                        <div class="tabela__lista__tarefas__tarefa__botoes__excluir"><img src="/public/excluirTask.png"></div>
+                        <a class="tabela__lista__tarefas__tarefa__botoes__visualizar" href="../task/view.html"><img src="/lupaTask.png"></a>
+                        <a class="tabela__lista__tarefas__tarefa__botoes__editar"><img src="/editarTask.png"></a>
+                        <div class="tabela__lista__tarefas__tarefa__botoes__excluir"><img src="/excluirTask.png"></div>
                     </div>
                 </li>
             </ul>
