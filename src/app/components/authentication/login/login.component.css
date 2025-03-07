@@ -1,0 +1,364 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    min-height: 100vh;
+    background-color: #191919 !important;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    gap: 70px;
+    padding: 3%;
+    height: 10%;
+}
+
+.cabecalho__titulo {
+    color: #EDEDED;
+}
+
+.cabecalho__links{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.cabecalho__links__link {
+    color: #EDEDED;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.cabecalho__links__link:hover {
+    color: #E11943;
+    cursor: pointer;
+}
+
+.cabecalho__links__link p{
+    margin-bottom: 0%;
+}
+
+.cabecalho__menu-icon {
+    display: none;
+}
+
+.cabecalho__menu-icon img{
+    max-width: 35px;
+    max-height: 35px;
+}
+
+.offcanvas {
+    background-color: #202020;
+    color: #EDEDED;
+}
+
+.btn-close {
+    background-color: #FF204E;
+}
+
+.navbar-nav{
+    display: flex;
+    padding: 0% 5%;
+    border-radius: 5px;
+    background-color: #191919;
+    width: 90%;
+}
+
+.nav-item {
+    background-color: #191919;
+    width: 100%;
+}
+
+.nav-link p{
+    font-size: 1.5rem;
+    margin-bottom: 0rem;
+    font-weight: 600;
+}
+
+.nav-link__forms {
+    display: none;
+}
+
+.cabecalho__offcanvas-body__formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 80%;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.cabecalho__offcanvas-body__formulario__caixa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    gap: 5px;
+}
+
+.cabecalho__offcanvas-body__formulario__caixa label{
+    color: #EDEDED;
+    font-size: 0.9rem;
+    text-align: start;
+    width: 100%;
+}
+
+.cabecalho__offcanvas-body__formulario__caixa input{
+    background: transparent;
+    border: 2px solid #EDEDED;
+    font-size: 1.25rem;
+    border-radius: 5px;
+    color: #EDEDED;
+    width: 96%;
+    height: 50%;
+    padding: 0% 2%;
+}
+
+.cabecalho__offcanvas-body__formulario__botao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    outline: none;
+    border: 2px solid #03C988;
+    border-radius: 5px;
+    color: #03C988;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-decoration: none;
+    height: 25%;
+    cursor: pointer;
+}
+
+.cabecalho__offcanvas-body__formulario__botao:hover{
+    background-color: #017750;
+}
+
+.cabecalho__offcanvas-body__formulario__botao p{
+    margin-bottom: 0%;
+}
+
+.offcanvas-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+.offcanvas-footer__botao {
+    border: 2px solid #FF204E;
+    border-radius: 5px;
+    text-align: center;
+    color: #FF204E;
+    font-size: 1.0rem;
+    font-weight: 600;
+    width: 90%;
+    padding: 4% 0%;
+    cursor: pointer;
+    text-decoration: none;
+
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+}
+
+.offcanvas-footer__botao:hover {
+    background-color: #8D122B;
+}
+
+.formulario {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 3% 0%;
+}
+
+.formulario__caixa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #202020;
+    border-radius: 5px;
+    height: 80%;
+    width: 70%;
+    gap: 20px;
+    padding: 2% 0%;
+}
+
+.formulario__caixa__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #EDEDED;
+    font-size: 1.25rem;
+    width: 100%;
+}
+
+.formulario__caixa__header h1{
+    margin-bottom: 0%;
+}
+
+.formulario__caixa__header hr{
+    width: 50%;
+    margin: 0;
+}
+
+.formulario__caixa__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 80%;
+    width: 90%;
+}
+
+.formulario__caixa__form__caixa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    gap: 5px;
+}
+
+.formulario__caixa__form__caixa  label{
+    color: #EDEDED;
+    font-size: 1.25rem;
+    text-align: start;
+    width: 100%;
+}
+
+.formulario__caixa__form__caixa  input{
+    background: transparent;
+    border: 2px solid #EDEDED;
+    font-size: 1.25rem;
+    border-radius: 5px;
+    color: #EDEDED;
+    width: 100%;
+    height: 50%;
+    padding: 0% 2%;
+}
+
+.formulario__caixa__form__caixa  input[type="date"]{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.formulario__caixa__form__caixa  input[type="date"]::-webkit-calendar-picker-indicator{
+    background-color: #EDEDED;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.formulario__caixa__botao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    outline: none;
+    border: 2px solid #03C988;
+    border-radius: 5px;
+    color: #03C988;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-decoration: none;
+    height: 25%;
+    cursor: pointer;
+}
+
+.formulario__caixa__botao:hover {
+    background-color: #017750;
+}
+
+.rodape {
+    height: 10%;
+    background-color: #FF204E;
+    padding: 1% 0%;
+}
+
+.rodape p {
+    color: #EDEDED;
+    font-size: 25px;
+    text-align: center;
+}
+
+.rodape p a{
+    color: #EDEDED;
+    font-size: 25px;
+    text-align: center;
+}
+.rodape p a:hover{
+    color: #191919;
+}
+
+@media (max-width: 800px) {
+    
+    .cabecalho {
+        padding: 20% 3% 10%;
+        background-color: #202020;
+    }
+
+    .cabecalho__links{
+        display: none;
+        position: absolute;
+        top: 200px;
+        padding: 5% 0%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+        background-color: #202020;
+        /* overflow: hidden; */
+    }
+
+    .cabecalho__links__link{
+        width: 100%;
+    }
+
+    .cabecalho__links__link:hover{
+        background-color: #191919;
+        cursor: pointer;
+    }
+
+
+    .cabecalho__menu-icon {
+        display: block;
+    }
+    
+    .cabecalho__menu-icon img{
+        max-width: 35px;
+        max-height: 35px;
+    }    
+
+    .formulario {
+        height: 87%;
+    }
+
+}
+
+@media (max-width: 550px) {
+    .cabecalho__links{
+        top: 160px;  
+    }
+}
+
+@media (max-width: 400px) {
+    .cabecalho__links{
+        top: 150px;  
+    }
+}
