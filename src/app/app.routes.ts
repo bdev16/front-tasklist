@@ -5,10 +5,16 @@ import { RegisterTaskComponent } from './components/register-task/register-task.
 import { UserListComponent } from './components/user-list/user-list.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/authentication/login/login.component';
 
 export const routes: Routes = [
     {
         path: "",
+        component: LoginComponent
+    },
+
+    {
+        path: "home",
         component: HomeComponent
     },
 
