@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
+import { FlatpickrDirective, provideFlatpickrDefaults } from 'angularx-flatpickr';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule],
+  imports: [CommonModule, FlatpickrDirective, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -18,6 +20,10 @@ export class HomeComponent {
 
   viewNavbarMobileOptions() {
     this.visibleLinksNavbarMobile = !this.visibleLinksNavbarMobile;
+  }
+
+  ngAfterViewInit() {
+    
   }
 
 }
