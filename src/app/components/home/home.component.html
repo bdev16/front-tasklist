@@ -10,7 +10,7 @@
 <body>
     <header class="cabecalho">
         <h1 class="cabecalho__titulo">Lista de Tarefas</h1>
-        <div class="cabecalho__links" [ngStyle]="{'display': visibleLinksNavbarMobile ? 'flex' : 'none'}">
+        <div class="cabecalho__links" [ngStyle]="{'display': visibleLinksNavbarMobile ? 'none' : 'flex'}">
             <a class="cabecalho__links__link" href="../home/index.html"><p>Home</p></a>
             <a class="cabecalho__links__link" href="../task/create.html"><p>Criar tarefa</p></a>
             <a class="cabecalho__links__link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"><p>Perfil</p></a>
@@ -48,14 +48,15 @@
                 </ul>
             </div>
             <div class="offcanvas-footer">
-                <a class="offcanvas-footer__botao" href="../authentication/login.html">Sair da conta</a>
+                <a class="offcanvas-footer__botao" [routerLink]="''">Sair da conta</a>
             </div>
             </div>
     </header>
     <main class="tabela">
         <section class="tabela__filtros">
             <div class="tabela__filtros__data" >
-                <input class="tabela__filtros__data__input" type="date" />
+                <!-- <input class="tabela__filtros__data__input" type="date" mwlFlatpickr mode="multiple" /> -->
+                <input class="tabela__filtros__data__input" type="date"/>
             </div>
             <div class="tabela__filtros__status">
                 <a class="tabela__filtros__status__link__pendentes">PENDENTES</a>
