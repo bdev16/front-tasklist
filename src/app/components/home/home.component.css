@@ -203,6 +203,20 @@ body {
     width: 30%;
 }
 
+.tabela__filtros__data input{
+    text-align: center;
+    width: 100%;
+    height: 60%;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #EDEDED;
+    background-color: #202020;
+    border: none;
+    border-radius: 5px;
+    padding: 5%;
+    cursor: pointer;
+}
+
 /* .tabela__filtros__data p{
     color: #EDEDED;
     font-weight: 600;
@@ -210,7 +224,7 @@ body {
     margin-bottom: 0%;
 } */
 
-.tabela__filtros__data__input {
+/* .tabela__filtros__data__input {
     text-align: center;
     width: 100%;
     height: 60%;
@@ -227,7 +241,8 @@ body {
 .tabela__filtros__data__input.tabela__filtros__data__input::-webkit-calendar-picker-indicator{
     display: none;
     -webkit-appearance: none;
-}
+} */
+
 .tabela__filtros__status {
     display: flex;
     justify-content: space-around;
@@ -616,7 +631,7 @@ body {
 @media (max-width: 550px) {
 
     .cabecalho__links{
-        top: 160px;  
+        top: 160px;
     }
 
     .tabela__filtros__status {
