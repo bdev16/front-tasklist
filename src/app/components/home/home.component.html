@@ -54,9 +54,9 @@
     </header>
     <main class="tabela">
         <section class="tabela__filtros">
-            <div class="tabela__filtros__data" >
-                <!-- <input class="tabela__filtros__data__input" type="date" mwlFlatpickr mode="multiple" /> -->
-                <input class="tabela__filtros__data__input" type="date"/>
+            <div class="tabela__filtros__data">
+                <input matInput [matDatepicker]="picker" (click)="picker.open()" [value]="currentDate">
+                <mat-datepicker #picker></mat-datepicker>
             </div>
             <div class="tabela__filtros__status">
                 <a class="tabela__filtros__status__link__pendentes">PENDENTES</a>
