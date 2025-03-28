@@ -350,20 +350,14 @@ body {
 
 }
 
-@media (max-width: 670px) {
-    .cabecalho__links{
-        top: 150px;  
-    }
-}
-
 @media (max-width: 550px) {
     .cabecalho__links{
-        top: 120px;  
+        top: 160px;  
     }
 }
 
 @media (max-width: 400px) {
     .cabecalho__links{
-        top: 90px;  
+        top: 150px;  
     }
 }

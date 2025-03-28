@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: content-box;
 }
 
 body {
@@ -25,6 +26,11 @@ body {
     color: #EDEDED;
 }
 
+/* .cabecalho__titulo:hover {
+    color: #E11943;
+    cursor: pointer;
+} */
+
 .cabecalho__links{
     display: flex;
     justify-content: center;
@@ -44,10 +50,6 @@ body {
     cursor: pointer;
 }
 
-.cabecalho__links__link p{
-    margin-bottom: 0%;
-}
-
 .cabecalho__menu-icon {
     display: none;
 }
@@ -62,8 +64,18 @@ body {
     color: #EDEDED;
 }
 
+.offcanvas-header{
+    display: flex;
+    justify-content: space-between;
+    margin: 5%;
+}
+
 .btn-close {
     background-color: #FF204E;
+}
+
+.offcanvas-header .btn-close {
+    margin: 0;
 }
 
 .navbar-nav{
@@ -81,12 +93,12 @@ body {
 
 .nav-link p{
     font-size: 1.5rem;
-    margin-bottom: 0rem;
+    margin-bottom: 0%;
     font-weight: 600;
 }
 
 .nav-link__forms {
-    display: none;
+    display: flex;
 }
 
 .cabecalho__offcanvas-body__formulario {
@@ -109,7 +121,7 @@ body {
 
 .cabecalho__offcanvas-body__formulario__caixa label{
     color: #EDEDED;
-    font-size: 0.9rem;
+    font-size: 15px;
     text-align: start;
     width: 100%;
 }
@@ -117,7 +129,7 @@ body {
 .cabecalho__offcanvas-body__formulario__caixa input{
     background: transparent;
     border: 2px solid #EDEDED;
-    font-size: 1.25rem;
+    font-size: 20px;
     border-radius: 5px;
     color: #EDEDED;
     width: 96%;
@@ -135,7 +147,7 @@ body {
     border-radius: 5px;
     color: #03C988;
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 20px;
     font-weight: 600;
     text-decoration: none;
     height: 25%;
@@ -178,9 +190,9 @@ body {
 
 .formulario {
     display: flex;
-    flex: 1;
     justify-content: center;
     align-items: center;
+    height: 82%;
     padding: 3% 0%;
 }
 
@@ -191,6 +203,7 @@ body {
     align-items: center;
     background-color: #202020;
     border-radius: 5px;
+    height: 80%;
     width: 70%;
     gap: 20px;
     padding: 2% 0%;
@@ -284,7 +297,6 @@ body {
 }
 
 .rodape {
-    height: 10%;
     background-color: #FF204E;
     padding: 1% 0%;
 }
@@ -350,20 +362,14 @@ body {
 
 }
 
-@media (max-width: 670px) {
-    .cabecalho__links{
-        top: 150px;  
-    }
-}
-
 @media (max-width: 550px) {
     .cabecalho__links{
-        top: 120px;  
+        top: 160px;  
     }
 }
 
 @media (max-width: 400px) {
     .cabecalho__links{
-        top: 90px;  
+        top: 150px;  
     }
 }

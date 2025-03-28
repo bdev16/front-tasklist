@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { TaskListComponent } from './components/task-list/task-list.component';
-import { RegisterTaskComponent } from './components/register-task/register-task.component';
-import { UserListComponent } from './components/user-list/user-list.component';
-import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/authentication/login/login.component';
+import { ViewTaskComponent } from './components/task/view-task/view-task.component';
+import { CreateTaskComponent } from './components/task/create-task/create-task.component';
+import { UpdateTaskComponent } from './components/task/update-task/update-task.component';
+import { RegisterComponent } from './components/authentication/register/register.component';
 
 export const routes: Routes = [
     {
@@ -19,28 +19,23 @@ export const routes: Routes = [
     },
 
     {
-        path: "Task/Create",
-        component: RegisterTaskComponent
+        path: "view-task",
+        component: ViewTaskComponent
     },
 
     {
-        path: "Task/Update",
-        component: RegisterTaskComponent
+        path: "create-task",
+        component: CreateTaskComponent
     },
 
     {
-        path: "Task/View",
-        component: RegisterTaskComponent
+        path: "update-task",
+        component: UpdateTaskComponent
     },
 
     {
-        path: "User",
-        component: UserListComponent
-    },
-
-    {
-        path: "User/Create",
-        component: RegisterUserComponent
+        path: "register",
+        component: RegisterComponent
     }
 
 ];

@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: content-box;
 }
 
 body {
@@ -25,6 +26,11 @@ body {
     color: #EDEDED;
 }
 
+/* .cabecalho__titulo:hover {
+    color: #E11943;
+    cursor: pointer;
+} */
+
 .cabecalho__links{
     display: flex;
     justify-content: center;
@@ -44,10 +50,6 @@ body {
     cursor: pointer;
 }
 
-.cabecalho__links__link p{
-    margin-bottom: 0%;
-}
-
 .cabecalho__menu-icon {
     display: none;
 }
@@ -62,8 +64,18 @@ body {
     color: #EDEDED;
 }
 
+.offcanvas-header{
+    display: flex;
+    justify-content: space-between;
+    margin: 5%;
+}
+
 .btn-close {
     background-color: #FF204E;
+}
+
+.offcanvas-header .btn-close {
+    margin: 0;
 }
 
 .navbar-nav{
@@ -81,12 +93,12 @@ body {
 
 .nav-link p{
     font-size: 1.5rem;
-    margin-bottom: 0rem;
+    margin-bottom: 0%;
     font-weight: 600;
 }
 
 .nav-link__forms {
-    display: none;
+    display: flex;
 }
 
 .cabecalho__offcanvas-body__formulario {
@@ -109,7 +121,7 @@ body {
 
 .cabecalho__offcanvas-body__formulario__caixa label{
     color: #EDEDED;
-    font-size: 0.9rem;
+    font-size: 15px;
     text-align: start;
     width: 100%;
 }
@@ -117,7 +129,7 @@ body {
 .cabecalho__offcanvas-body__formulario__caixa input{
     background: transparent;
     border: 2px solid #EDEDED;
-    font-size: 1.25rem;
+    font-size: 20px;
     border-radius: 5px;
     color: #EDEDED;
     width: 96%;
@@ -135,7 +147,7 @@ body {
     border-radius: 5px;
     color: #03C988;
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 20px;
     font-weight: 600;
     text-decoration: none;
     height: 25%;
@@ -178,9 +190,9 @@ body {
 
 .formulario {
     display: flex;
-    flex: 1;
     justify-content: center;
     align-items: center;
+    height: 82%;
     padding: 3% 0%;
 }
 
@@ -205,6 +217,7 @@ body {
     color: #EDEDED;
     font-size: 1.25rem;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .formulario__caixa__header h1{
@@ -220,8 +233,10 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: 80%;
-    width: 90%;
+    height: 90%;
+    width: 100%;
+    padding: 0% 5%;
+    box-sizing: border-box;
 }
 
 .formulario__caixa__form__caixa {
@@ -230,7 +245,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 50%;
-    gap: 5px;
+    gap: 2px;
+    box-sizing: border-box;
 }
 
 .formulario__caixa__form__caixa  label{
@@ -238,6 +254,7 @@ body {
     font-size: 1.25rem;
     text-align: start;
     width: 100%;
+    padding-left: 2%;
 }
 
 .formulario__caixa__form__caixa  input{
@@ -248,18 +265,42 @@ body {
     color: #EDEDED;
     width: 100%;
     height: 50%;
-    padding: 0% 2%;
 }
 
 .formulario__caixa__form__caixa  input[type="date"]{
     display: flex;
     justify-content: flex-start;
+    cursor: pointer;
 }
 
 .formulario__caixa__form__caixa  input[type="date"]::-webkit-calendar-picker-indicator{
     background-color: #EDEDED;
     border-radius: 2px;
     cursor: pointer;
+}
+
+.formulario__caixa__form__caixa ul{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    list-style: none;
+    white-space: nowrap;
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+.formulario__caixa__form__caixa ul::-webkit-scrollbar {
+    width: 10px;
+}
+
+.formulario__caixa__form__caixa ul::-webkit-scrollbar-track {
+    background-color: #191919;
+    border-radius: 5px;
+}
+
+.formulario__caixa__form__caixa li{
+    color: #EDEDED;
 }
 
 .formulario__caixa__botao {
@@ -276,7 +317,10 @@ body {
     font-weight: 600;
     text-decoration: none;
     height: 25%;
+    width: 100%;
+    padding: 0% 2%;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 .formulario__caixa__botao:hover {
@@ -284,7 +328,6 @@ body {
 }
 
 .rodape {
-    height: 10%;
     background-color: #FF204E;
     padding: 1% 0%;
 }
@@ -350,20 +393,14 @@ body {
 
 }
 
-@media (max-width: 670px) {
-    .cabecalho__links{
-        top: 150px;  
-    }
-}
-
 @media (max-width: 550px) {
     .cabecalho__links{
-        top: 120px;  
+        top: 160px;  
     }
 }
 
 @media (max-width: 400px) {
     .cabecalho__links{
-        top: 90px;  
+        top: 150px;  
     }
 }

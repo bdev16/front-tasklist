@@ -64,8 +64,18 @@ body {
     color: #EDEDED;
 }
 
+.offcanvas-header{
+    display: flex;
+    justify-content: space-between;
+    margin: 5%;
+}
+
 .btn-close {
     background-color: #FF204E;
+}
+
+.offcanvas-header .btn-close {
+    margin: 0;
 }
 
 .navbar-nav{
@@ -88,7 +98,7 @@ body {
 }
 
 .nav-link__forms {
-    display: none;
+    display: flex;
 }
 
 .cabecalho__offcanvas-body__formulario {
@@ -360,7 +370,7 @@ body {
     gap: 30px;
 }
 
-.tabela__lista__tarefas__tarefa__caixa1__status {
+.tabela__lista__tarefas__tarefa__caixa1__status__pending {
     display: flex;
     appearance: none;
     width: 60px;
@@ -371,10 +381,22 @@ body {
     cursor: pointer;
 }
 
-.tabela__lista__tarefas__tarefa__caixa1__status:checked {
+.tabela__lista__tarefas__tarefa__caixa1__status__completed {
+    display: flex;
+    appearance: none;
+    width: 60px;
+    height: 60px;
     background-color: #03C988;
     border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
 }
+
+/* .tabela__lista__tarefas__tarefa__caixa1__status:checked {
+    background-color: #03C988;
+    border: none;
+} */
 
 .tabela__lista__tarefas__tarefa__caixa1__texto {
     color: #EDEDED;

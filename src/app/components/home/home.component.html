@@ -11,8 +11,8 @@
     <header class="cabecalho">
         <h1 class="cabecalho__titulo">Lista de Tarefas</h1>
         <div class="cabecalho__links" [ngStyle]="{'display': visibleLinksNavbarMobile ? 'none' : 'flex'}">
-            <a class="cabecalho__links__link" href="../home/index.html"><p>Home</p></a>
-            <a class="cabecalho__links__link" href="../task/create.html"><p>Criar tarefa</p></a>
+            <a class="cabecalho__links__link" [routerLink]="'home'"><p>Home</p></a>
+            <a class="cabecalho__links__link" [routerLink]="'/create-task'"><p>Criar tarefa</p></a>
             <a class="cabecalho__links__link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"><p>Perfil</p></a>
         </div>
         <div class="cabecalho__menu-icon">
@@ -26,85 +26,65 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#"><p>Dados</p></a>
-                    <div class="nav-link__forms">
-                    <form class="cabecalho__offcanvas-body__formulario">
-                        <div class="cabecalho__offcanvas-body__formulario__caixa">
-                            <label>Username</label>
-                            <input type="text" name="ftitle">
-                        </div>
-                        <div class="cabecalho__offcanvas-body__formulario__caixa">
-                            <label>Email</label>
-                            <input type="text" name="fdescription">
-                        </div>
-                        <div class="cabecalho__offcanvas-body__formulario__caixa">
-                            <label>Senha</label>
-                            <input type="text" name="fdescription">
-                        </div>
-                        <a class="cabecalho__offcanvas-body__formulario__botao" href="../home/home.component.html"><p>salvar alterações</p></a>
-                    </form>
+                    <a class="nav-link active" aria-current="page" (click)="toggleFormUserProfile()"><p>Dados</p></a>
+                    <div class="nav-link__forms" [hidden]="!viewProfile">
+                        <form class="cabecalho__offcanvas-body__formulario" [formGroup]="updateUserForm">
+                            <div class="cabecalho__offcanvas-body__formulario__caixa">
+                                <label>Username</label>
+                                <input type="text" name="fuserName" [value]="userName" formControlName="UserName">
+                            </div>
+                            <div class="cabecalho__offcanvas-body__formulario__caixa">
+                                <label>Email</label>
+                                <input type="text" name="fuserEmail" [value]="userEmail" formControlName="Email">
+                            </div>
+                            <a class="cabecalho__offcanvas-body__formulario__botao" (click)="addUpdateUser()"><p>salvar alterações</p></a>
+                        </form>
                     </div>
                 </li>
                 </ul>
             </div>
             <div class="offcanvas-footer">
-                <a class="offcanvas-footer__botao" [routerLink]="''">Sair da conta</a>
+                <a class="offcanvas-footer__botao" (click)="renicializeDatasSavedOnSessionAndLocalStorage()" [routerLink]="''">Sair da conta</a>
             </div>
-            </div>
+        </div>
     </header>
     <main class="tabela">
         <section class="tabela__filtros">
             <div class="tabela__filtros__data">
-                <input matInput [matDatepicker]="picker" (click)="picker.open()" [value]="currentDate">
+                <input matInput [matDatepicker]="picker" [value]="dateForInput" (dateChange)="onDateChange($event)" (click)="picker.open()">
                 <mat-datepicker #picker></mat-datepicker>
             </div>
             <div class="tabela__filtros__status">
-                <a class="tabela__filtros__status__link__pendentes">PENDENTES</a>
-                <a class="tabela__filtros__status__link__concluidas">CONCLUIDAS</a>
+                <a class="tabela__filtros__status__link__pendentes" (click)="filterByStatus(1)">PENDENTES</a>
+                <a class="tabela__filtros__status__link__concluidas" (click)="filterByStatus(2)">CONCLUIDAS</a>
             </div>
             <div class="tabela__filtros__input">
                 <img class="tabela__filtros__input__img" src="/lupaInput.png" alt="Icone de lupa">
-                <input type="text" class="tabela__filtros__input_input">
+                <input type="text" class="tabela__filtros__input_input" (input)="addFilterInput($event)">
             </div>
         </section>
         <section class="tabela__lista">
             <ul class="tabela__lista__tarefas">
-                <li class="tabela__lista__tarefas__tarefa">
-                    <div class="tabela__lista__tarefas__tarefa__caixa1">
-                        <input class="tabela__lista__tarefas__tarefa__caixa1__status" type="checkbox">
-                        <p class="tabela__lista__tarefas__tarefa__caixa1__texto">TAREFA 1</p>
-                        <a class="tabela__lista__tarefas__tarefa__caixa1__button__abrir" (click)="viewMobileOptions()" *ngIf="!visibleOptions"><img src="/adicionarIcon.png"></a>
-                        <a class="tabela__lista__tarefas__tarefa__caixa1__button__fechar" (click)="viewMobileOptions()" *ngIf="visibleOptions" [ngStyle]="{'display': visibleOptions ? 'flex' : 'none'}"><img src="/fechar.png"></a>
-                    </div>
-                    <div class="tabela__lista__tarefas__tarefa__botoes">
-                        <a class="tabela__lista__tarefas__tarefa__botoes__visualizar" href="../task/view.html"><img src="/lupaTask.png"></a>
-                        <a class="tabela__lista__tarefas__tarefa__botoes__editar" href="../task/update.html"><img src="/editarTask.png"></a>
-                        <div class="tabela__lista__tarefas__tarefa__botoes__excluir"><img src="/excluirTask.png"></div>
-                    </div>
-                    <div class="tabela__lista__tarefas__tarefa__botoes__mobile" [ngStyle]="{'display': visibleOptions ? 'flex' : 'none', 'justify-content': 'center', 'gap': '40px', 'width': '100%'}">
-                        <a class="tabela__lista__tarefas__tarefa__botoes__visualizar"><img src="/lupaTask.png"></a>
-                        <a class="tabela__lista__tarefas__tarefa__botoes__editar" href="../task/update.html"><img src="/editarTask.png"></a>
-                        <div class="tabela__lista__tarefas__tarefa__botoes__excluir"><img src="/excluirTask.png"></div>
-                    </div>
-                </li>
-                <li class="tabela__lista__tarefas__tarefa">
-                    <div class="tabela__lista__tarefas__tarefa__caixa1">
-                        <input class="tabela__lista__tarefas__tarefa__caixa1__status" type="checkbox">
-                        <p class="tabela__lista__tarefas__tarefa__caixa1__texto">TAREFA 1</p>
-                        <a class="tabela__lista__tarefas__tarefa__caixa1__button__abrir"><img src="/adicionarIcon.png"></a>
-                        <a class="tabela__lista__tarefas__tarefa__caixa1__button__fechar"><img src="/fechar.png"></a>
-                    </div>
-                    <div class="tabela__lista__tarefas__tarefa__botoes">
-                        <a class="tabela__lista__tarefas__tarefa__botoes__visualizar" href="../task/view.html"><img src="/lupaTask.png"></a>
-                        <a class="tabela__lista__tarefas__tarefa__botoes__editar"><img src="/editarTask.png"></a>
-                        <div class="tabela__lista__tarefas__tarefa__botoes__excluir"><img src="/excluirTask.png"></div>
-                    </div>
-                    <div class="tabela__lista__tarefas__tarefa__botoes__mobile">
-                        <a class="tabela__lista__tarefas__tarefa__botoes__visualizar" href="../task/view.html"><img src="/lupaTask.png"></a>
-                        <a class="tabela__lista__tarefas__tarefa__botoes__editar"><img src="/editarTask.png"></a>
-                        <div class="tabela__lista__tarefas__tarefa__botoes__excluir"><img src="/excluirTask.png"></div>
-                    </div>
-                </li>
+                @for(task of dataSource; track task) {
+                    <li class="tabela__lista__tarefas__tarefa">
+                        <div class="tabela__lista__tarefas__tarefa__caixa1">
+                            <input [ngClass]="{ 'tabela__lista__tarefas__tarefa__caixa1__status__pending': task.status === 1, 'tabela__lista__tarefas__tarefa__caixa1__status__completed': task.status === 2 }" type="checkbox"  (click)=" toggleCheckboxStatus(task.id)">
+                            <p class="tabela__lista__tarefas__tarefa__caixa1__texto">{{ task.title }}</p>
+                            <a class="tabela__lista__tarefas__tarefa__caixa1__button__abrir" (click)="viewMobileOptions()" *ngIf="!visibleOptions"><img src="/adicionarIcon.png"></a>
+                            <a class="tabela__lista__tarefas__tarefa__caixa1__button__fechar" (click)="viewMobileOptions()" *ngIf="visibleOptions" [ngStyle]="{'display': visibleOptions ? 'flex' : 'none'}"><img src="/fechar.png"></a>
+                        </div>
+                        <div class="tabela__lista__tarefas__tarefa__botoes">
+                            <a class="tabela__lista__tarefas__tarefa__botoes__visualizar" (click)="passingValueIdTask(task.id, 1)"><img src="/lupaTask.png"></a>
+                            <a class="tabela__lista__tarefas__tarefa__botoes__editar" (click)="passingValueIdTask(task.id, 2)"><img src="/editarTask.png"></a>
+                            <div class="tabela__lista__tarefas__tarefa__botoes__excluir" (click)="addDeleteTask(task.id!)"><img src="/excluirTask.png"></div>
+                        </div>
+                        <div class="tabela__lista__tarefas__tarefa__botoes__mobile" [ngStyle]="{'display': visibleOptions ? 'flex' : 'none', 'justify-content': 'center', 'gap': '40px', 'width': '100%'}">
+                            <a class="tabela__lista__tarefas__tarefa__botoes__visualizar" (click)="passingValueIdTask(task.id, 1)"><img src="/lupaTask.png"></a>
+                            <a class="tabela__lista__tarefas__tarefa__botoes__editar" (click)="passingValueIdTask(task.id, 2)"><img src="/editarTask.png"></a>
+                            <div class="tabela__lista__tarefas__tarefa__botoes__excluir" (click)="addDeleteTask(task.id!)"><img src="/excluirTask.png"></div>
+                        </div>
+                    </li>
+                }
             </ul>
         </section>
     </main>

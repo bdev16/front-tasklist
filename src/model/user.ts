@@ -1,16 +1,19 @@
 import { Task } from "./task";
 
 export class User {
-    id?: number;
+    userId?: string;
     name: string;
     email: string;
     password: string;
     tasks: Task[];
+    token: string;
     
-    constructor(name: string, email: string, password: string, tasks: Task[]) {
+    constructor(userId: string, name: string, email: string, password: string, tasks: Task[], token: string) {
+        this.userId = userId;
         this.name = name;
         this.email = email;
         this.password = password;
         this.tasks = tasks;
+        this.token = token;
     }
 }
