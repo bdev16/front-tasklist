@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'; 
 import { Router, RouterModule } from '@angular/router';
 import { ShareService } from '../../../../services/share.service';
 import { ApiService } from '../../../../services/api.service';
@@ -8,7 +9,7 @@ import { FormGroup, Validators, FormBuilder, ReactiveFormsModule} from '@angular
 
 @Component({
   selector: 'app-view-task',
-  imports: [RouterModule ,ReactiveFormsModule],
+  imports: [CommonModule, RouterModule ,ReactiveFormsModule],
   templateUrl: './view-task.component.html',
   styleUrl: './view-task.component.css'
 })

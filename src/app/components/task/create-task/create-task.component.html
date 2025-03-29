@@ -10,7 +10,7 @@
 <body>
     <header class="cabecalho">
         <h1 class="cabecalho__titulo">Lista de Tarefas</h1>
-        <div class="cabecalho__links">
+        <div class="cabecalho__links" [ngStyle]="{'display': visibleLinksNavbarMobile ? 'none' : 'flex'}">
             <a class="cabecalho__links__link" [routerLink]="'/home'"><p>Home</p></a>
             <a class="cabecalho__links__link" href="../task/create.html"><p>Criar tarefa</p></a>
             <a class="cabecalho__links__link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation"><p>Perfil</p></a>

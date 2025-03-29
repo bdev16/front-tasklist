@@ -1,4 +1,5 @@
-import { Component , OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'; 
 import { Router, RouterModule } from '@angular/router';
 import { ShareService } from '../../../../services/share.service';
 import { ApiService } from '../../../../services/api.service';
@@ -13,7 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-update-task',
-  imports: [RouterModule, MatDatepickerModule, MatInputModule, MatFormFieldModule, FormsModule, MatNativeDateModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, MatDatepickerModule, MatInputModule, MatFormFieldModule, FormsModule, MatNativeDateModule, ReactiveFormsModule],
   templateUrl: './update-task.component.html',
   styleUrl: './update-task.component.css'
 })
