@@ -354,6 +354,12 @@ body {
     border-radius: 5px;
 }
 
+.tabela__lista__tarefas__errorMensage {
+    display: flex;
+    align-items: center;
+    color: #EDEDED;
+}
+
 .tabela__lista__tarefas__tarefa {
     display: flex;
     justify-content: space-between;

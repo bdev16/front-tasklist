@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
+import { NotificationServiceService } from '../../../../services/notification-service.service'
 
 @Component({
   selector: 'app-update-task',
@@ -52,7 +53,8 @@ export class UpdateTaskComponent implements OnInit {
       private router: Router,
       private shareService: ShareService,
       private api: ApiService,
-      private formBuilder: FormBuilder
+      private formBuilder: FormBuilder,
+      private notification: NotificationServiceService
     ) {
     }
 
@@ -117,8 +119,15 @@ export class UpdateTaskComponent implements OnInit {
       
       console.log(this.updateTaskForm.value);
       console.log(this.task);
-      this.api.updateTask(this.taskId, this.task).subscribe((response) => {
-        console.log(response);
+      this.api.updateTask(this.taskId, this.task).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.notification.show('Tarefa modificada com sucesso');
+        },
+        error: (err) => {
+          console.log(err);
+          this.notification.show('Ocorreu um erro ao tentar atualizar a tarefa', true);
+        }
       });
       // window.location.reload();
     }

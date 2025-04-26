@@ -65,6 +65,7 @@
         </section>
         <section class="tabela__lista">
             <ul class="tabela__lista__tarefas">
+                <h1 class="tabela__lista__tarefas__errorMensage" [ngStyle]="{'display': tasksExist ? 'none' : 'flex'} ">{{ errorGetMessage }}</h1>
                 @for(task of dataSource; track task) {
                     <li class="tabela__lista__tarefas__tarefa">
                         <div class="tabela__lista__tarefas__tarefa__caixa1">
@@ -76,12 +77,12 @@
                         <div class="tabela__lista__tarefas__tarefa__botoes">
                             <a class="tabela__lista__tarefas__tarefa__botoes__visualizar" (click)="passingValueIdTask(task.id, 1)"><img src="/lupaTask.png"></a>
                             <a class="tabela__lista__tarefas__tarefa__botoes__editar" (click)="passingValueIdTask(task.id, 2)"><img src="/editarTask.png"></a>
-                            <div class="tabela__lista__tarefas__tarefa__botoes__excluir" (click)="addDeleteTask(task.id!)"><img src="/excluirTask.png"></div>
+                            <div class="tabela__lista__tarefas__tarefa__botoes__excluir" (click)="openDialog(task.id!)"><img src="/excluirTask.png"></div>
                         </div>
                         <div class="tabela__lista__tarefas__tarefa__botoes__mobile" [ngStyle]="{'display': visibleOptions ? 'flex' : 'none', 'justify-content': 'center', 'gap': '40px', 'width': '100%'}">
                             <a class="tabela__lista__tarefas__tarefa__botoes__visualizar" (click)="passingValueIdTask(task.id, 1)"><img src="/lupaTask.png"></a>
                             <a class="tabela__lista__tarefas__tarefa__botoes__editar" (click)="passingValueIdTask(task.id, 2)"><img src="/editarTask.png"></a>
-                            <div class="tabela__lista__tarefas__tarefa__botoes__excluir" (click)="addDeleteTask(task.id!)"><img src="/excluirTask.png"></div>
+                            <div class="tabela__lista__tarefas__tarefa__botoes__excluir" (click)="openDialog(task.id!)"><img src="/excluirTask.png"></div>
                         </div>
                     </li>
                 }

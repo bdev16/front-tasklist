@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormGroup, Validators, FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { User } from '../../../../model/user';
 import { ApiService } from '../../../../services/api.service';
 import { Router } from '@angular/router';
 import { ShareService } from '../../../../services/share.service';
+import { NotificationServiceService } from '../../../../services/notification-service.service';
 
 @Component({
   selector: 'app-login',
@@ -24,8 +25,10 @@ export class LoginComponent implements OnInit{
   dataSource!: User;
   isLoadingResults = false;
 
+  isTypePassword: boolean = true;
+
   constructor(private router: Router, private api: ApiService, private shareService: ShareService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder, private notification: NotificationServiceService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -42,12 +45,14 @@ export class LoginComponent implements OnInit{
         localStorage.setItem("jwt", this.dataSource.token);
         localStorage.setItem("userId", this.dataSource.userId ?? '');
         this.isLoadingResults = false;
+        this.notification.show('Login feito com sucesso');
         this.router.navigate(['/home']);
         console.log(response.userId);
         console.log(response);
       },
       error: (err) => {
         console.log(err);
+        this.notification.show('Ocorreu um erro ao fazer o login', true);
         this.isLoadingResults = false;
       }
     });
@@ -55,6 +60,14 @@ export class LoginComponent implements OnInit{
 
   viewNavbarMobileOptions() {
     this.visibleLinksNavbarMobile = !this.visibleLinksNavbarMobile;
+  }
+
+  viewPassword() {
+    if (this.isTypePassword) {
+      this.isTypePassword = false;
+    } else {
+      this.isTypePassword = true;
+    }
   }
 
 }

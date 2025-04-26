@@ -34,8 +34,12 @@
                     <input type="text" id="femail" name="femail" formControlName="Email">
                 </div>
                 <div class="formulario__caixa__form__caixa">
-                    <label for="fpassword">Senha</label>
-                    <input type="text" id="fpassword" name="fpassword" formControlName="Password">
+                    <label for="loginPassword">Senha</label>
+                    <div class="formulario__caixa__form__caixa__password">
+                        <input [type]="isTypePassword ? 'password' : 'text'" id="loginPassword" name="loginPassword" formControlName="Password" [ngStyle]="">
+                        <i class="bi bi-eye" [ngStyle]="{'display': isTypePassword ? '' : 'none', 'font-size': '20px'}" (click)="viewPassword()"></i>
+                        <i class="bi bi-eye-slash" [ngStyle]="{'display': isTypePassword ? 'none' : '', 'font-size': '20px'}" (click)="viewPassword()"></i>
+                    </div>
                 </div>
                 <button class="formulario__caixa__botao" type="submit"><p>Cadastrar</p></button>
             </form>

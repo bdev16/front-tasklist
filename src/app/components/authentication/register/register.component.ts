@@ -6,6 +6,7 @@ import { User } from '../../../../model/user';
 import { ApiService } from '../../../../services/api.service';
 import { Router } from '@angular/router';
 import { ShareService } from '../../../../services/share.service';
+import { NotificationServiceService } from '../../../../services/notification-service.service';
 
 @Component({
   selector: 'app-register',
@@ -20,8 +21,10 @@ export class RegisterComponent implements OnInit {
 
   registerForm!: FormGroup;
 
+  isTypePassword: boolean = true;
+
   constructor(private router: Router, private api: ApiService, 
-    private formBuilder: FormBuilder)
+    private formBuilder: FormBuilder, private notification: NotificationServiceService)
   { 
     this.registerForm = this.formBuilder.group({
       'UserName': [null, Validators.required],
@@ -37,9 +40,24 @@ export class RegisterComponent implements OnInit {
   }
 
   addRegisterUser() {
-    this.api.registerUser(this.registerForm.value).subscribe((response) => {
-      console.log(response);
+    this.api.registerUser(this.registerForm.value).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.notification.show('Cadastro feito com sucesso');
+      },
+      error: (err) => {
+        console.log(err);
+        this.notification.show('Ocorreu um erro ao realizar o cadastro', true);
+      }
     })
+  } 
+
+  viewPassword() {
+    if (this.isTypePassword) {
+      this.isTypePassword = false;
+    } else {
+      this.isTypePassword = true;
+    }
   }
 
 }

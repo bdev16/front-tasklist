@@ -1,23 +1,26 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, inject } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { RouterModule } from '@angular/router';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { User } from '../../../model/user';
 import { Task } from '../../../model/task';
+import { Error } from '../../../model/error';
 import { ApiService } from '../../../services/api.service';
 import { Router } from '@angular/router';
 import { ShareService } from '../../../services/share.service';
-import { FormGroup, Validators, FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { NotificationServiceService } from '../../../services/notification-service.service'
 
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, RouterModule, MatDatepickerModule, MatInputModule, MatFormFieldModule, FormsModule, MatNativeDateModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, MatDatepickerModule, MatInputModule, MatFormFieldModule, FormsModule, MatNativeDateModule, ReactiveFormsModule, MatDialogModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -33,7 +36,7 @@ export class HomeComponent {
   dateForInput: Date = new Date(this.dateString);
    
   
-  id: string = '6031e80e-f93b-47c4-b52f-623854634bc3';
+  // id: string = '6031e80e-f93b-47c4-b52f-623854634bc3';
   userId: string = localStorage.getItem('userId') ?? '';
   userName: string = '';
   userEmail: string = '';
@@ -48,10 +51,18 @@ export class HomeComponent {
   updateUserForm!: FormGroup;
 
   userObject!: User;
-  // userObject2: User = new User(this.userId, this.userObject.name, this.userObject.email, this.userPassword, this.userTasks, this.userToken); 
+  // userObject2: User = new User(this.userId, this.userObject.name, this.userObject.email, this.userPassword, this.userTasks, this.userToken);
+
+  errorGetTasks!: Error;
+  errorGetStatus: string = '';
+  errorGetMessage: string = '';
+  tasksExist: boolean = false;
+
+  readonly dialog = inject(MatDialog);
 
   constructor(
-    private router: Router, private api: ApiService, private shareService: ShareService, private formBuilder: FormBuilder
+    private router: Router, private api: ApiService, private shareService: ShareService,
+    private formBuilder: FormBuilder, private notification: NotificationServiceService
   ) { }
 
   
@@ -111,11 +122,20 @@ export class HomeComponent {
   }
 
   addTasksForDate() {
-    this.api.getTasksForDate(this.id, this.dateString).subscribe((response: any) => {
-        console.log(response);
-        this.dataSource = response;
-      this.filter = response;
-        console.log(this.dataSource);
+    this.api.getTasksForDate(this.userId, this.dateString).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.dataSource = response;
+          this.filter = response;
+          console.log(this.dataSource);
+          this.tasksExist = true;
+        },
+        error: (err) => {
+          console.log(err);
+          this.errorGetStatus = err.error.status;
+          this.errorGetMessage = err.error.message;
+          this.tasksExist = false;
+        }
       }
     )
   }
@@ -133,15 +153,20 @@ export class HomeComponent {
   }
 
   addGetUser() {
-    this.api.getUser(this.userId).subscribe((response) => {
-      this.userName = response.userName;
-      this.userEmail = response.email
-      this.userPassword = response.passwordHash;
-      this.userTasks = response.tasks;
-      this.userToken = response.token;
-      this.userObject = new User(response.id, response.userName, response.email, response.passwordHash, response.tasks, response.token);
-      console.log('Resposta do getuser: ');
-      console.log(response);
+    this.api.getUser(this.userId).subscribe({
+      next: (response) => {
+        this.userName = response.userName;
+        this.userEmail = response.email
+        this.userPassword = response.passwordHash;
+        this.userTasks = response.tasks;
+        this.userToken = response.token;
+        this.userObject = new User(response.id, response.userName, response.email, response.passwordHash, response.tasks, response.token);
+        console.log('Resposta do getuser: ');
+        console.log(response);
+      },
+      error: (err) => {
+        console.log(err);
+      }
     })
   }
 
@@ -212,4 +237,64 @@ export class HomeComponent {
     localStorage.clear();
   }
 
+  openDialog(taskId: number) {
+    this.dialog.open(DialogRemove, {data: { taskId }});
+  }
+
+}
+
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Inject } from '@angular/core';
+
+@Component({
+  selector: 'dialog-remove',
+  template: `<h2 mat-dialog-title>Deletar tarefa</h2>
+  <mat-dialog-content>
+    Você realmente deseja deletar essa tarefa??
+  </mat-dialog-content>
+  <mat-dialog-actions class="actions">
+    <button mat-button mat-dialog-close class="custom-btn">Não</button>
+    <button mat-button mat-dialog-close cdkFocusInitial class="custom-btn confirm" (click)="addDeleteTask()">Sim</button>
+  </mat-dialog-actions>`,
+  styles: [`
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .custom-btn{
+      border: none;
+      border-radius: 5px;
+      background-color:rgb(172, 172, 172);
+    }
+
+    .custom-btn:hover {
+      cursor: pointer;
+      background-color:rgb(114, 114, 114);
+    }
+    `],
+  imports: [MatDialogModule],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class DialogRemove {
+  readonly dialogRef = inject(MatDialogRef<DialogRemove>);
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: { taskId: number }, private api: ApiService, private notification: NotificationServiceService
+  ) { }
+  
+  addDeleteTask() {
+    let taskId = this.data.taskId;
+    this.api.deleteTask(taskId).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.notification.show('Tarefa deletada com sucesso');
+      },
+      error: (err) => {
+        console.log(err);
+        this.notification.show('Ocorreu um erro ao tentar deletar a tarefa', true);
+      }
+    })
+    // window.location.reload();
+  }
 }

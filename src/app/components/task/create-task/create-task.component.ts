@@ -11,6 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
+import { NotificationServiceService } from '../../../../services/notification-service.service'
 
 
 @Component({
@@ -55,7 +56,8 @@ export class CreateTaskComponent implements OnInit {
     private router: Router,
     private shareService: ShareService,
     private api: ApiService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private notification: NotificationServiceService
   ) {
   }
 
@@ -91,13 +93,26 @@ export class CreateTaskComponent implements OnInit {
   }
 
   addRegisterTask() {
+    let sucessOrError = true;
     for (let date in this.dateStringList) {
       console.log(`date: ${date}`);
       console.log(`date: ${this.dateStringList[date]}`)
       this.task.date = this.dateStringList[date];
-      this.api.registerTask(this.task).subscribe((response) => {
-        console.log(response);
+      this.api.registerTask(this.task).subscribe({
+        next: (response) => {
+          console.log(response);
+          sucessOrError = true;
+        },
+        error: (err) => {
+          console.log(err);
+          sucessOrError = false;
+        }
       });
+    }
+    if (sucessOrError) {
+      this.notification.show('Tarefa(s) criada(s) com sucesso');
+    } else {
+      this.notification.show('Ocorreu um erro ao tentar cadastrar a(s) tarefa(s)', true);
     }
     this.reinicializeDatasForFormRegisterTask();
   }

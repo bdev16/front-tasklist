@@ -262,6 +262,20 @@ body {
     cursor: pointer;
 }
 
+.formulario__caixa__form__caixa__password {
+    display: flex;
+    box-sizing: content-box;
+    width: 100%;
+}
+
+.formulario__caixa__form__caixa__password i {
+    position: absolute;
+    cursor: pointer;
+    font-size: 20px;
+    color: #919191;
+    right: 20%;
+}
+
 .formulario__caixa__botao {
     display: flex;
     justify-content: center;
